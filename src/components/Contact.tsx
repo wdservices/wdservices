@@ -34,13 +34,13 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Let's Start Your Digital Journey
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Ready to transform your business with innovative digital solutions? 
             Get in touch with our team and let's discuss your project.
           </p>
@@ -51,36 +51,34 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-1">
               <div className="space-y-6">
-                <Card className="border-0 shadow-md">
+                <Card className="border-0 shadow-md dark:bg-gray-800">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
                       <Mail className="h-6 w-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-gray-900">Email Us</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email Us</h3>
                     </div>
-                    <p className="text-gray-600">hello@wavesdigital.com</p>
-                    <p className="text-gray-600">support@wavesdigital.com</p>
+                    <p className="text-gray-600 dark:text-gray-300">hello.wdservices@gmail.com</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-md">
+                <Card className="border-0 shadow-md dark:bg-gray-800">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
                       <Phone className="h-6 w-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-gray-900">Call Us</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Call Us</h3>
                     </div>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
-                    <p className="text-gray-600">+1 (555) 987-6543</p>
+                    <p className="text-gray-600 dark:text-gray-300">08108510085</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-md">
+                <Card className="border-0 shadow-md dark:bg-gray-800">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
                       <MapPin className="h-6 w-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-gray-900">Visit Us</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Visit Us</h3>
                     </div>
-                    <p className="text-gray-600">123 Digital Street</p>
-                    <p className="text-gray-600">Tech City, TC 12345</p>
+                    <p className="text-gray-600 dark:text-gray-300">Road 12, first avenue off location/</p>
+                    <p className="text-gray-600 dark:text-gray-300">Ada George Port Harcourt, Nigeria</p>
                   </CardContent>
                 </Card>
               </div>
@@ -88,12 +86,12 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <Card className="border-0 shadow-lg">
+              <Card className="border-0 shadow-lg dark:bg-gray-800">
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                           Full Name *
                         </label>
                         <Input
@@ -103,11 +101,11 @@ const Contact = () => {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full"
+                          className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                           Email Address *
                         </label>
                         <Input
@@ -117,13 +115,13 @@ const Contact = () => {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full"
+                          className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Company Name
                       </label>
                       <Input
@@ -132,12 +130,12 @@ const Contact = () => {
                         type="text"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full"
+                        className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Project Details *
                       </label>
                       <Textarea
@@ -148,7 +146,7 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Tell us about your project, requirements, and goals..."
-                        className="w-full"
+                        className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       />
                     </div>
 

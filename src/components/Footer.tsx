@@ -8,15 +8,17 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 dark:bg-black text-white transition-colors">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">WD</span>
-              </div>
+            <div className="flex items-center space-x-3 mb-6">
+              <img 
+                src="/lovable-uploads/b097228a-b401-42a1-a55a-f38b2d997d9c.png" 
+                alt="Waves Digital Services Logo" 
+                className="w-8 h-8"
+              />
               <span className="text-xl font-bold">Waves Digital Services</span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
@@ -26,15 +28,15 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center text-gray-300">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>hello@wavesdigital.com</span>
+                <span>hello.wdservices@gmail.com</span>
               </div>
               <div className="flex items-center text-gray-300">
                 <Phone className="h-4 w-4 mr-2" />
-                <span>+1 (555) 123-4567</span>
+                <span>08108510085</span>
               </div>
               <div className="flex items-center text-gray-300">
                 <MapPin className="h-4 w-4 mr-2" />
-                <span>123 Digital Street, Tech City, TC 12345</span>
+                <span>Road 12, first avenue off location/ Ada George Port Harcourt, Nigeria</span>
               </div>
             </div>
           </div>
@@ -110,7 +112,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 mt-12">
+        <div className="border-t border-gray-800 dark:border-gray-700 pt-8 mt-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2024 Waves Digital Services. All rights reserved.
