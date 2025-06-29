@@ -44,7 +44,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/b097228a-b401-42a1-a55a-f38b2d997d9c.png" 
               alt="Waves Digital Services Logo" 
-              className="w-10 h-10"
+              className="w-10 h-10 object-contain"
             />
             <span className="text-xl font-bold text-gray-900 dark:text-white">Waves Digital Services</span>
           </div>

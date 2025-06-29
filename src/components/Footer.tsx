@@ -17,7 +17,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/b097228a-b401-42a1-a55a-f38b2d997d9c.png" 
                 alt="Waves Digital Services Logo" 
-                className="w-8 h-8"
+                className="w-8 h-8 object-contain"
               />
               <span className="text-xl font-bold">Waves Digital Services</span>
             </div>
