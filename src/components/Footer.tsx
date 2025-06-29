@@ -1,10 +1,21 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    // If we're not on the home page, navigate there first
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -13,14 +24,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
+            <Link to="/" className="flex items-center space-x-3 mb-6">
               <img 
                 src="/lovable-uploads/b097228a-b401-42a1-a55a-f38b2d997d9c.png" 
                 alt="Waves Digital Services Logo" 
                 className="w-8 h-8 object-contain"
               />
               <span className="text-xl font-bold">Waves Digital Services</span>
-            </div>
+            </Link>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               Transforming businesses through innovative digital solutions. From AI-powered tools 
               to custom development, we're your partner in digital success.
@@ -62,12 +73,12 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('academy')}
+                <Link 
+                  to="/academy"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Academy
-                </button>
+                </Link>
               </li>
               <li>
                 <button 
