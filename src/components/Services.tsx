@@ -58,25 +58,28 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-md">
-              <CardContent className="p-8">
-                <div className="mb-6">
-                  {service.icon}
+            <Card key={index} className="hover:shadow-2xl transition-all duration-300 border-0 shadow-md group transform hover:-translate-y-2 hover:scale-105 bg-white overflow-hidden">
+              <CardContent className="p-8 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-sm text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 transform group-hover:scale-125 transition-transform duration-300"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-700">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
               </CardContent>
             </Card>
           ))}

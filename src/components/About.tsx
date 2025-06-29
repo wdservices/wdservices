@@ -32,38 +32,41 @@ const About = () => {
               </p>
               
               <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4"></div>
-                  <span className="text-gray-700">Innovative AI-powered solutions</span>
+                <div className="flex items-center group">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">Innovative AI-powered solutions</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4"></div>
-                  <span className="text-gray-700">Custom development expertise</span>
+                <div className="flex items-center group">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">Custom development expertise</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4"></div>
-                  <span className="text-gray-700">Comprehensive training programs</span>
+                <div className="flex items-center group">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">Comprehensive training programs</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4"></div>
-                  <span className="text-gray-700">End-to-end project delivery</span>
+                <div className="flex items-center group">
+                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
+                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">End-to-end project delivery</span>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-6">
               {achievements.map((achievement, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300 border-0 shadow-md">
-                  <CardContent className="p-6">
-                    <div className="flex justify-center mb-4">
-                      {achievement.icon}
+                <Card key={index} className="text-center hover:shadow-2xl transition-all duration-500 border-0 shadow-md group transform hover:-translate-y-3 hover:scale-105 bg-white overflow-hidden">
+                  <CardContent className="p-6 relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="flex justify-center mb-4 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        {achievement.icon}
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                        {achievement.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300">
+                        {achievement.description}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {achievement.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      {achievement.description}
-                    </p>
                   </CardContent>
                 </Card>
               ))}

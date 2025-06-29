@@ -51,34 +51,34 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-1">
               <div className="space-y-6">
-                <Card className="border-0 shadow-md dark:bg-gray-800">
+                <Card className="border-0 shadow-md dark:bg-gray-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 group">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
-                      <Mail className="h-6 w-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email Us</h3>
+                      <Mail className="h-6 w-6 text-blue-600 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Email Us</h3>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300">hello.wdservices@gmail.com</p>
+                    <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">hello.wdservices@gmail.com</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-md dark:bg-gray-800">
+                <Card className="border-0 shadow-md dark:bg-gray-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 group">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
-                      <Phone className="h-6 w-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Call Us</h3>
+                      <Phone className="h-6 w-6 text-blue-600 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Call Us</h3>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300">08108510085</p>
+                    <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">08108510085</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-md dark:bg-gray-800">
+                <Card className="border-0 shadow-md dark:bg-gray-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 group">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
-                      <MapPin className="h-6 w-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Visit Us</h3>
+                      <MapPin className="h-6 w-6 text-blue-600 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Visit Us</h3>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300">Road 12, first avenue off location/</p>
-                    <p className="text-gray-600 dark:text-gray-300">Ada George Port Harcourt, Nigeria</p>
+                    <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">Road 12, first avenue off location/</p>
+                    <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">Ada George Port Harcourt, Nigeria</p>
                   </CardContent>
                 </Card>
               </div>
@@ -86,7 +86,7 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <Card className="border-0 shadow-lg dark:bg-gray-800">
+              <Card className="border-0 shadow-lg dark:bg-gray-800 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -101,7 +101,7 @@ const Contact = () => {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                          className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:border-blue-300"
                         />
                       </div>
                       <div>
@@ -115,7 +115,7 @@ const Contact = () => {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                          className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:border-blue-300"
                         />
                       </div>
                     </div>
@@ -130,7 +130,7 @@ const Contact = () => {
                         type="text"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:border-blue-300"
                       />
                     </div>
 
@@ -146,13 +146,13 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Tell us about your project, requirements, and goals..."
-                        className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        className="w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:border-blue-300"
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 hover:shadow-lg">
                       Send Message
-                      <Send className="ml-2 h-4 w-4" />
+                      <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </form>
                 </CardContent>
