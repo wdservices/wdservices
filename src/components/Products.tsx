@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, BookOpen, Users, Calculator, Heart } from "lucide-react";
+import { ExternalLink, BookOpen, Users, Calculator, ChefHat } from "lucide-react";
 
 const Products = () => {
   const products = [
@@ -13,7 +13,8 @@ const Products = () => {
       description: "Advanced learning management system with AR integration for immersive educational experiences.",
       category: "Education Technology",
       status: "Live",
-      features: ["AR Integration", "LMS", "Interactive Learning", "Progress Tracking"]
+      features: ["AR Integration", "LMS", "Interactive Learning", "Progress Tracking"],
+      url: "https://arfed.vercel.app/"
     },
     {
       icon: <Users className="h-8 w-8 text-green-600" />,
@@ -21,23 +22,34 @@ const Products = () => {
       description: "Comprehensive exam preparation platform with AI-powered study recommendations and practice tests.",
       category: "EdTech",
       status: "Live",
-      features: ["AI Recommendations", "Practice Tests", "Progress Analytics", "Study Plans"]
+      features: ["AI Recommendations", "Practice Tests", "Progress Analytics", "Study Plans"],
+      url: "https://prepmate-edu.vercel.app/"
     },
     {
-      icon: <Heart className="h-8 w-8 text-pink-600" />,
-      name: "BabeBook",
-      description: "Social networking platform designed for meaningful connections and community building.",
-      category: "Social Platform",
-      status: "Beta",
-      features: ["Social Networking", "Community Features", "Privacy Focused", "Mobile First"]
+      icon: <ChefHat className="h-8 w-8 text-amber-600" />,
+      name: "BakeBook",
+      description: "The ultimate recipe management app for bakers to store, organize, and access their favorite recipes.",
+      category: "Baking App",
+      status: "Live",
+      features: ["Recipe Storage", "Recipe Organization", "Shopping Lists", "Baking Timers"],
+      url: "https://bakebook.vercel.app/"
     },
     {
       icon: <Calculator className="h-8 w-8 text-purple-600" />,
       name: "MathsGenius",
-      description: "Interactive mathematics learning app with step-by-step problem solving and AI tutoring.",
-      category: "Educational App",
-      status: "Live",
-      features: ["Step-by-step Solutions", "AI Tutoring", "Practice Problems", "Progress Reports"]
+      description: "Interactive math learning platform with step-by-step solutions and practice problems.",
+      category: "EdTech",
+      status: "Beta",
+      features: ["Step-by-Step Solutions", "Practice Problems", "Progress Tracking", "Adaptive Learning"]
+    },
+    {
+      icon: <Users className="h-8 w-8 text-pink-600" />,
+      name: "VibeCodez",
+      description: "An exclusive event series where industry leaders and enthusiasts gather to explore AI, coding, and the latest in tech innovation. Learn directly from experts building cutting-edge tools.",
+      category: "Tech Event Series",
+      status: "Upcoming Events",
+      features: ["AI & Coding Talks", "Industry Expert Panels", "Networking Opportunities", "Hands-on Workshops"],
+      url: "https://vibecodez.vercel.app/"
     }
   ];
 
@@ -96,10 +108,12 @@ const Products = () => {
                     </div>
                   </div>
 
-                  <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                    Learn More
-                    <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                  <a href={product.url} target="_blank" rel="noopener noreferrer" className="block w-full">
+                    <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                      Learn More
+                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>

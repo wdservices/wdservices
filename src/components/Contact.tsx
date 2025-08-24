@@ -18,11 +18,24 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
+    
+    // Create mailto link with form data
+    const subject = `New Contact Form Submission from ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0A` +
+                 `Email: ${formData.email}%0D%0A` +
+                 `Company: ${formData.company}%0D%0A%0D%0A` +
+                 `Message:%0D%0A${formData.message}`;
+    
+    // Open user's default email client
+    window.location.href = `mailto:hello.wdservices@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    
+    // Show success message
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Opening Email Client",
+      description: "Please send the pre-filled email to contact us.",
     });
+    
+    // Clear the form
     setFormData({ name: '', email: '', company: '', message: '' });
   };
 

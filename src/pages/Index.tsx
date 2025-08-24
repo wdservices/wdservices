@@ -12,6 +12,7 @@ import Academy from "@/components/Academy";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ClientShowcase from "@/components/ClientShowcase";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <Header />
       <Hero />
       <Services />
+      <ClientShowcase />
       <Products />
       <Academy />
       <About />

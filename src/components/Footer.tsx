@@ -88,6 +88,14 @@ const Footer = () => {
                   About
                 </button>
               </li>
+              <li>
+                <Link 
+                  to="/admin"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Admin Dashboard
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -109,7 +117,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  BabeBook
+                  BakeBook
                   <ExternalLink className="h-3 w-3 ml-1" />
                 </a>
               </li>
