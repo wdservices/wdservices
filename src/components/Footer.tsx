@@ -90,7 +90,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link 
-                  to="/admin"
+                  to="/admin/login"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Admin Dashboard

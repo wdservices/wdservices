@@ -7,16 +7,32 @@ export interface User {
   lastActive?: string;
 }
 
+export enum ToolStatus {
+  DRAFT = 'draft',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived'
+}
+
 export interface AITool {
   id: string;
   name: string;
   description: string;
   price: number;
   category: string;
+  features: string[];
+  demoUrl: string;
+  documentationUrl: string;
   imageUrl?: string;
+  status: ToolStatus;
+  isFeatured: boolean;
   isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
+  rating: number;
+  tags: string[];
+  keywords: string[];
+  createdAt: any; // Firestore Timestamp or Date
+  updatedAt: any; // Firestore Timestamp or Date
+  createdBy?: string;
+  updatedBy?: string;
 }
 
 export interface App {
@@ -24,6 +40,7 @@ export interface App {
   name: string;
   description: string;
   icon: string;
+  path: string;
   totalUsers: number;
   premiumUsers: number;
   recentUsers: User[];
