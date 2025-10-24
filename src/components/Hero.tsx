@@ -9,8 +9,138 @@ const Hero = () => {
   };
 
   return (
-    <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
-      <div className="container mx-auto px-4">
+    <section className="pt-24 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative overflow-hidden">
+      {/* Animated Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        
+        {/* Floating Particles */}
+        <div className="absolute inset-0">
+          {/* Small floating particles */}
+          {[...Array(25)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-60"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${2 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i + 25}
+              className="absolute w-1 h-1 bg-purple-400 rounded-full animate-bounce opacity-60"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${2 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+          
+          {/* Medium floating elements */}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i + 45}
+              className="absolute w-2 h-2 bg-blue-300 rounded-full animate-pulse opacity-40"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i + 53}
+              className="absolute w-2 h-2 bg-purple-300 rounded-full animate-pulse opacity-40"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Glowing Orbs */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-500/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-40 right-1/3 w-28 h-28 bg-purple-500/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        
+        {/* Moving Technology Elements */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          {/* Floating Tech Symbols */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`tech-${i}`}
+              className="absolute text-blue-400/30 animate-bounce"
+              style={{
+                left: `${10 + Math.random() * 80}%`,
+                top: `${10 + Math.random() * 80}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${4 + Math.random() * 2}s`,
+                fontSize: `${12 + Math.random() * 8}px`
+              }}
+            >
+              {['⚡', '🔧', '⚙️', '💻', '🔌', '📡'][i]}
+            </div>
+          ))}
+          
+          {/* Animated Geometric Shapes */}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={`geo-${i}`}
+              className={`absolute border border-purple-400/20 animate-spin ${
+                i % 3 === 0 ? 'w-6 h-6' : i % 3 === 1 ? 'w-4 h-4 rounded-full' : 'w-5 h-5'
+              }`}
+              style={{
+                left: `${5 + Math.random() * 90}%`,
+                top: `${5 + Math.random() * 90}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${6 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+          
+          {/* Moving Binary Code Effect */}
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`binary-${i}`}
+              className="absolute text-blue-300/20 font-mono text-xs animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            >
+              {Math.random() > 0.5 ? '101010' : '010101'}
+            </div>
+          ))}
+          
+          {/* Floating Hexagons */}
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={`hex-${i}`}
+              className="absolute w-3 h-3 border border-purple-300/30 transform rotate-45 animate-bounce"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">

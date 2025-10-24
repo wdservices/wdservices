@@ -26,11 +26,11 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-3 mb-6">
               <img 
-                src="/lovable-uploads/b097228a-b401-42a1-a55a-f38b2d997d9c.png" 
-                alt="Waves Digital Services Logo" 
+                src="/logo.png" 
+                alt="Bluwaves Technologies Logo" 
                 className="w-8 h-8 object-contain"
               />
-              <span className="text-xl font-bold">Waves Digital Services</span>
+              <span className="text-xl font-bold">Bluwaves Technologies</span>
             </Link>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               Transforming businesses through innovative digital solutions. From AI-powered tools 
@@ -134,7 +134,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 dark:border-gray-700 pt-8 mt-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Waves Digital Services. All rights reserved.
+              © 2024 Bluwaves Technologies. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">

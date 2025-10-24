@@ -18,10 +18,10 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                About Waves Digital Services
+                About Bluwaves Technologies
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                At Waves Digital Services, we're passionate about creating digital solutions that make a real impact. 
+                At Bluwaves Technologies, we're passionate about creating digital solutions that make a real impact. 
                 Since our inception, we've been at the forefront of technological innovation, helping businesses 
                 harness the power of AI, mobile apps, and custom software.
               </p>

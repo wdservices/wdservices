@@ -51,11 +51,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/b097228a-b401-42a1-a55a-f38b2d997d9c.png" 
-              alt="Waves Digital Services Logo" 
+              src="/logo.png" 
+              alt="Bluwaves Technologies Logo" 
               className="w-10 h-10 object-contain"
             />
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Waves Digital Services</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">Bluwaves Technologies</span>
           </Link>
 
           {/* Desktop Navigation */}
