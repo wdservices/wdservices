@@ -1,6 +1,25 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
+const createTextLogo = (name: string) =>
+  `data:image/svg+xml;utf8,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="320" height="128" viewBox="0 0 320 128">
+      <rect width="100%" height="100%" rx="16" fill="#ffffff"/>
+      <text
+        x="50%"
+        y="50%"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Arial, sans-serif"
+        font-size="22"
+        font-weight="700"
+        fill="#0f172a"
+      >
+        ${name}
+      </text>
+    </svg>
+  `)}`;
+
 const ClientShowcase = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const clients = [
@@ -9,6 +28,9 @@ const ClientShowcase = () => {
     { name: 'EmergenSee', logo: '/emergensee.png' },
     { name: 'Golden Tulip Hotel', logo: '/golden tulip hotel.png' },
     { name: 'Oak Park and Gardens', logo: '/oakpagrk and gardens.png' },
+    { name: 'megavantagedynamic', logo: createTextLogo('megavantagedynamic') },
+    { name: 'peersallianceng', logo: createTextLogo('peersallianceng') },
+    { name: 'megavantageapartments', logo: createTextLogo('megavantageapartments') },
   ];
 
   return (
@@ -24,7 +46,7 @@ const ClientShowcase = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center justify-items-center">
           {clients.map((client, index) => (
             <motion.div 
               key={index}

@@ -1,10 +1,17 @@
 
 import React from 'react';
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, ExternalLink, MessageCircle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const whatsappUrl = 'https://wa.me/2347051551543';
+  const products = [
+    { name: 'PrepVerse', url: 'https://www.prepverse.bwtng.live/' },
+    { name: 'BakeBook', url: 'https://bakebook.vercel.app/' },
+    { name: 'HerbalStrength' },
+    { name: 'CityTour' }
+  ];
 
   const scrollToSection = (id: string) => {
     // If we're not on the home page, navigate there first
@@ -39,11 +46,19 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center text-gray-300">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>hello.wdservices@gmail.com</span>
+                <a href="mailto:hello.wdservices@gmail.com" className="hover:text-white transition-colors">
+                  hello.wdservices@gmail.com
+                </a>
               </div>
               <div className="flex items-center text-gray-300">
                 <Phone className="h-4 w-4 mr-2" />
                 <span>08108510085</span>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <MessageCircle className="h-4 w-4 mr-2" />
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  WhatsApp: 07051551543
+                </a>
               </div>
               <div className="flex items-center text-gray-300">
                 <MapPin className="h-4 w-4 mr-2" />
@@ -73,14 +88,6 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <Link 
-                  to="/academy"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Academy
-                </Link>
-              </li>
-              <li>
                 <button 
                   onClick={() => scrollToSection('about')}
                   className="text-gray-300 hover:text-white transition-colors"
@@ -103,30 +110,20 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Our Products</h3>
             <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  ARFed
-                  <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  PrepMate
-                  <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  BakeBook
-                  <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  MathsGenius
-                  <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-              </li>
+              {products.map((product) => (
+                <li key={product.name}>
+                  {product.url ? (
+                    <a href={product.url} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors flex items-center">
+                      {product.name}
+                      <ExternalLink className="h-3 w-3 ml-1" />
+                    </a>
+                  ) : (
+                    <span className="text-gray-300 flex items-center">
+                      {product.name}
+                    </span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

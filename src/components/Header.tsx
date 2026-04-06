@@ -66,14 +66,8 @@ const Header = () => {
             <button onClick={() => scrollToSection('products')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Products
             </button>
-            <Link to="/ai-market" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              AI Market
-            </Link>
             <a href="https://asemi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
               Asemi
-            </a>
-            <a href="https://vibecodez.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              Tech Event
             </a>
             <button onClick={() => scrollToSection('about')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               About
@@ -120,17 +114,11 @@ const Header = () => {
               <button onClick={() => scrollToSection('products')} className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Products
               </button>
-              <Link to="/ai-market" className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
-                AI Market
-              </Link>
               <Link to="/admin" className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-2" onClick={() => setIsMenuOpen(false)}>
                 Admin
               </Link>
               <a href="https://asemi.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-2" onClick={() => setIsMenuOpen(false)}>
                 Asemi
-              </a>
-              <a href="https://vibecodez.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-2" onClick={() => setIsMenuOpen(false)}>
-                Tech Event
               </a>
               <button onClick={() => scrollToSection('about')} className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 About

@@ -3,27 +3,18 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, BookOpen, Users, Calculator, ChefHat } from "lucide-react";
+import { ExternalLink, BookOpen, ChefHat, Leaf, MapPin } from "lucide-react";
 
 const Products = () => {
   const products = [
     {
       icon: <BookOpen className="h-8 w-8 text-blue-600" />,
-      name: "ARFed",
-      description: "Advanced learning management system with AR integration for immersive educational experiences.",
-      category: "Education Technology",
-      status: "Live",
-      features: ["AR Integration", "LMS", "Interactive Learning", "Progress Tracking"],
-      url: "https://arfed.vercel.app/"
-    },
-    {
-      icon: <Users className="h-8 w-8 text-green-600" />,
-      name: "PrepMate",
-      description: "Comprehensive exam preparation platform with AI-powered study recommendations and practice tests.",
+      name: "PrepVerse",
+      description: "Comprehensive exam preparation platform with AI-powered study recommendations, practice tests, and structured study support.",
       category: "EdTech",
       status: "Live",
       features: ["AI Recommendations", "Practice Tests", "Progress Analytics", "Study Plans"],
-      url: "https://prepmate-edu.vercel.app/"
+      url: "https://www.prepverse.bwtng.live/"
     },
     {
       icon: <ChefHat className="h-8 w-8 text-amber-600" />,
@@ -35,21 +26,20 @@ const Products = () => {
       url: "https://bakebook.vercel.app/"
     },
     {
-      icon: <Calculator className="h-8 w-8 text-purple-600" />,
-      name: "MathsGenius",
-      description: "Interactive math learning platform with step-by-step solutions and practice problems.",
-      category: "EdTech",
-      status: "Beta",
-      features: ["Step-by-Step Solutions", "Practice Problems", "Progress Tracking", "Adaptive Learning"]
+      icon: <Leaf className="h-8 w-8 text-green-600" />,
+      name: "HerbalStrength",
+      description: "A wellness-focused product experience for discovering herbal solutions, product benefits, and healthy lifestyle support.",
+      category: "Health & Wellness",
+      status: "New",
+      features: ["Product Catalog", "Wellness Insights", "Mobile Friendly", "Simple Ordering"]
     },
     {
-      icon: <Users className="h-8 w-8 text-pink-600" />,
-      name: "VibeCodez",
-      description: "An exclusive event series where industry leaders and enthusiasts gather to explore AI, coding, and the latest in tech innovation. Learn directly from experts building cutting-edge tools.",
-      category: "Tech Event Series",
-      status: "Upcoming Events",
-      features: ["AI & Coding Talks", "Industry Expert Panels", "Networking Opportunities", "Hands-on Workshops"],
-      url: "https://vibecodez.vercel.app/"
+      icon: <MapPin className="h-8 w-8 text-purple-600" />,
+      name: "CityTour",
+      description: "A city exploration platform that helps users discover destinations, local experiences, and travel highlights with ease.",
+      category: "Travel & Tourism",
+      status: "New",
+      features: ["Destination Discovery", "Tour Highlights", "Location Guidance", "Mobile Access"]
     }
   ];
 
@@ -108,12 +98,18 @@ const Products = () => {
                     </div>
                   </div>
 
-                  <a href={product.url} target="_blank" rel="noopener noreferrer" className="block w-full">
-                    <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                      Learn More
-                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  {product.url ? (
+                    <a href={product.url} target="_blank" rel="noopener noreferrer" className="block w-full">
+                      <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                        Learn More
+                        <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </a>
+                  ) : (
+                    <Button variant="outline" disabled className="w-full">
+                      Coming Soon
                     </Button>
-                  </a>
+                  )}
                 </div>
               </CardContent>
             </Card>
