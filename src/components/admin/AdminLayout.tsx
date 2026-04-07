@@ -75,7 +75,7 @@ export const AdminLayout = ({ apps = [], children }: AdminLayoutProps) => {
         {/* Bottom */}
         <div className="border-t border-border p-2 space-y-1">
           <button
-            onClick={() => logout()}
+            onClick={() => signOut()}
             className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors ${collapsed ? 'justify-center' : ''}`}
           >
             <LogOut className="h-4 w-4 shrink-0" />
