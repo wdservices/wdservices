@@ -13,7 +13,7 @@ export const AdminLayout = ({ apps = [], children }: AdminLayoutProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const { logout } = useAuth();
+  const { signOut } = useAuth();
   
   const currentApp = apps.find(app => location.pathname.startsWith(`/admin/products/${app.id}`));
   
