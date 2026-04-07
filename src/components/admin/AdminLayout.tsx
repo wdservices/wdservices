@@ -3,19 +3,16 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { App } from '../../types/admin';
 
 interface AdminLayoutProps {
-  apps?: App[];  // Made optional with ?
+  apps?: App[];
   children?: React.ReactNode;
 }
 
-export const AdminLayout = ({ apps = [] }: AdminLayoutProps) => {
+export const AdminLayout = ({ apps = [], children }: AdminLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   
-  // Check if current route is an app dashboard
-  const isAppDashboard = location.pathname.startsWith('/admin/apps/');
-  const currentApp = apps.find(app => location.pathname.startsWith(`/admin/apps/${app.id}`));
+  const currentApp = apps.find(app => location.pathname.startsWith(`/admin/products/${app.id}`));
   
-  // Helper function to check if a path is active
   const isActive = (path: string) => {
     if (path === '/admin') {
       return location.pathname === path;
@@ -47,7 +44,7 @@ export const AdminLayout = ({ apps = [] }: AdminLayoutProps) => {
         {/* Sidebar */}
         <div className={`fixed inset-y-0 left-0 z-30 w-64 bg-gray-900 text-white transition-transform duration-300 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
           <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
-            <h1 className="text-xl font-bold">Admin Dashboard</h1>
+            <h1 className="text-xl font-bold">Bluwaves Admin</h1>
             <button 
               className="md:hidden text-gray-400 hover:text-white"
               onClick={() => setSidebarOpen(false)}
@@ -70,32 +67,22 @@ export const AdminLayout = ({ apps = [] }: AdminLayoutProps) => {
                   <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
-                  Dashboard
-                </Link>
-                <Link 
-                  to="/admin/ai-marketplace"
-                  className={`flex items-center px-4 py-2 text-sm rounded-lg transition-colors ${isActive('/admin/ai-marketplace') ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  AI Marketplace
+                  Overview
                 </Link>
               </div>
             </div>
 
             <div className="mt-8 px-4">
-              <h2 className="text-xs uppercase text-gray-500 font-semibold tracking-wider">Applications</h2>
+              <h2 className="text-xs uppercase text-gray-500 font-semibold tracking-wider">Products</h2>
               <div className="mt-2 space-y-1">
                 {apps.map((app) => (
                   <Link
                     key={app.id}
-                    to={`/admin/apps/${app.id}`}
-                    className={`flex items-center px-4 py-2 text-sm rounded-lg transition-colors ${isActive(`/admin/apps/${app.id}`) ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
+                    to={`/admin/products/${app.id}`}
+                    className={`flex items-center px-4 py-2 text-sm rounded-lg transition-colors ${isActive(`/admin/products/${app.id}`) ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <span className="w-2 h-2 mr-3 rounded-full bg-green-500"></span>
+                    <span className="mr-3 text-base">{app.icon}</span>
                     {app.name}
                   </Link>
                 ))}
@@ -115,7 +102,7 @@ export const AdminLayout = ({ apps = [] }: AdminLayoutProps) => {
           )}
           
           <div className="p-6">
-            <Outlet />
+            {children ?? <Outlet />}
           </div>
         </div>
       </div>
