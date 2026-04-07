@@ -1,77 +1,77 @@
-
 import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Users, Award, Globe, Zap } from "lucide-react";
+import { Users, Award, Globe, Zap, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const About = () => {
-  const achievements = [
-    { icon: <Users className="h-8 w-8 text-blue-600" />, title: "500+ Clients", description: "Businesses transformed worldwide" },
-    { icon: <Award className="h-8 w-8 text-green-600" />, title: "100+ Projects", description: "Successfully delivered solutions" },
-    { icon: <Globe className="h-8 w-8 text-purple-600" />, title: "Global Reach", description: "Serving clients across continents" },
-    { icon: <Zap className="h-8 w-8 text-orange-600" />, title: "AI Expertise", description: "Cutting-edge AI implementations" }
+  const stats = [
+    { icon: Users, value: "500+", label: "Clients Served", color: "text-blue-500" },
+    { icon: Award, value: "100+", label: "Projects Done", color: "text-emerald-500" },
+    { icon: Globe, value: "Global", label: "Reach", color: "text-violet-500" },
+    { icon: Zap, value: "AI", label: "Expertise", color: "text-amber-500" },
+  ];
+
+  const points = [
+    "Innovative AI-powered solutions",
+    "Custom development expertise",
+    "Comprehensive training programs",
+    "End-to-end project delivery",
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                About Bluwaves Technologies
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                At Bluwaves Technologies, we're passionate about creating digital solutions that make a real impact. 
-                Since our inception, we've been at the forefront of technological innovation, helping businesses 
-                harness the power of AI, mobile apps, and custom software.
-              </p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Our team of expert developers, AI specialists, and digital strategists work collaboratively to 
-                deliver solutions that not only meet your current needs but also prepare your business for the future. 
-                From startups to enterprise clients, we've built lasting partnerships based on trust, innovation, and results.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center group">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">Innovative AI-powered solutions</span>
-                </div>
-                <div className="flex items-center group">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">Custom development expertise</span>
-                </div>
-                <div className="flex items-center group">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">Comprehensive training programs</span>
-                </div>
-                <div className="flex items-center group">
-                  <div className="w-3 h-3 bg-blue-600 rounded-full mr-4 transform group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300">End-to-end project delivery</span>
-                </div>
-              </div>
-            </div>
+    <section id="about" className="py-24 bg-muted/30">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">About Us</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              About Waves Digital Services
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              We're passionate about creating digital solutions that make a real impact. 
+              Since our inception, we've been at the forefront of technological innovation, 
+              helping businesses harness the power of AI, mobile apps, and custom software.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Our team of expert developers, AI specialists, and digital strategists work collaboratively to 
+              deliver solutions that prepare your business for the future.
+            </p>
 
-            <div className="grid grid-cols-2 gap-6">
-              {achievements.map((achievement, index) => (
-                <Card key={index} className="text-center hover:shadow-2xl transition-all duration-500 border-0 shadow-md group transform hover:-translate-y-3 hover:scale-105 bg-white overflow-hidden">
-                  <CardContent className="p-6 relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="flex justify-center mb-4 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        {achievement.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                        {achievement.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300">
-                        {achievement.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+            <div className="space-y-3">
+              {points.map((point, i) => (
+                <div key={i} className="flex items-center gap-3 group">
+                  <CheckCircle className="h-4 w-4 text-primary shrink-0" />
+                  <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{point}</span>
+                </div>
               ))}
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 gap-4"
+          >
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={index}
+                  className="glass-card rounded-2xl p-6 text-center hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1 group"
+                >
+                  <div className={`w-10 h-10 rounded-xl bg-muted/50 flex items-center justify-center mx-auto mb-3 ${stat.color} group-hover:scale-110 transition-transform`}>
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+                </div>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </section>

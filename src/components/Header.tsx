@@ -6,23 +6,27 @@ import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user has a theme preference stored
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       setIsDark(true);
       document.documentElement.classList.add('dark');
     }
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const toggleDarkMode = () => {
     const newDarkMode = !isDark;
     setIsDark(newDarkMode);
-    
     if (newDarkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -33,7 +37,6 @@ const Header = () => {
   };
 
   const scrollToSection = (id: string) => {
-    // If we're not on the home page, navigate there first
     if (window.location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -45,86 +48,96 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const navItems = [
+    { label: 'Services', action: () => scrollToSection('services') },
+    { label: 'Products', action: () => scrollToSection('products') },
+    { label: 'About', action: () => scrollToSection('about') },
+  ];
+
   return (
-    <header className="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-100 dark:border-gray-800 transition-colors">
-      <div className="container mx-auto px-4 py-4">
+    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      scrolled 
+        ? 'bg-background/80 backdrop-blur-xl border-b border-border shadow-sm' 
+        : 'bg-transparent'
+    }`}>
+      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
-            <img 
-              src="/logo.png" 
-              alt="Bluwaves Technologies Logo" 
-              className="w-10 h-10 object-contain"
-            />
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Bluwaves Technologies</span>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img src="/logo.png" alt="Waves Digital Services Logo" className="w-9 h-9 object-contain rounded-lg" />
+            <span className="text-lg font-bold text-foreground tracking-tight">
+              Waves<span className="text-primary"> Digital</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('services')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              Services
-            </button>
-            <button onClick={() => scrollToSection('products')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              Products
-            </button>
-            <a href="https://asemi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={item.action}
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+              >
+                {item.label}
+              </button>
+            ))}
+            <a
+              href="https://asemi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+            >
               Asemi
             </a>
-            <button onClick={() => scrollToSection('about')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              About
-            </button>
-            <Button 
+            <div className="w-px h-5 bg-border mx-2" />
+            <Button
               onClick={toggleDarkMode}
               variant="ghost"
               size="icon"
-              className="text-gray-700 dark:text-gray-300"
+              className="text-muted-foreground hover:text-foreground h-9 w-9"
             >
-              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
-            <Button onClick={() => scrollToSection('contact')} className="bg-blue-600 hover:bg-blue-700">
-              Contact Us
+            <Button
+              onClick={() => scrollToSection('contact')}
+              size="sm"
+              className="ml-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-5 glow-sm"
+            >
+              Get in Touch
             </Button>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <Button 
-              onClick={toggleDarkMode}
-              variant="ghost"
-              size="icon"
-              className="text-gray-700 dark:text-gray-300"
-            >
-              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          <div className="md:hidden flex items-center gap-2">
+            <Button onClick={toggleDarkMode} variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground">
+              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
-            <button 
-              className="text-gray-700 dark:text-gray-300"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <button className="text-foreground p-1" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-gray-100 dark:border-gray-800 pt-4">
-            <div className="flex flex-col space-y-4">
-              <button onClick={() => scrollToSection('services')} className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                Services
+          <nav className="md:hidden mt-4 pb-4 pt-4 border-t border-border space-y-1 animate-fade-in">
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={item.action}
+                className="block w-full text-left px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
+              >
+                {item.label}
               </button>
-              <button onClick={() => scrollToSection('products')} className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                Products
-              </button>
-              <Link to="/admin" className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-2" onClick={() => setIsMenuOpen(false)}>
-                Admin
-              </Link>
-              <a href="https://asemi.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-2" onClick={() => setIsMenuOpen(false)}>
-                Asemi
-              </a>
-              <button onClick={() => scrollToSection('about')} className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                About
-              </button>
-              <Button onClick={() => scrollToSection('contact')} className="bg-blue-600 hover:bg-blue-700 w-full">
-                Contact Us
+            ))}
+            <a
+              href="https://asemi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Asemi
+            </a>
+            <div className="pt-2">
+              <Button onClick={() => scrollToSection('contact')} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full">
+                Get in Touch
               </Button>
             </div>
           </nav>

@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Mail, Phone, MapPin, ExternalLink, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, ExternalLink } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -10,11 +9,10 @@ const Footer = () => {
     { name: 'PrepVerse', url: 'https://www.prepverse.bwtng.live/' },
     { name: 'BakeBook', url: 'https://bakebook.vercel.app/' },
     { name: 'HerbalStrength' },
-    { name: 'CityTour' }
+    { name: 'CityTour' },
   ];
 
   const scrollToSection = (id: string) => {
-    // If we're not on the home page, navigate there first
     if (window.location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -26,101 +24,62 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white transition-colors">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+    <footer className="bg-card border-t border-border">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-3 mb-6">
-              <img 
-                src="/logo.png" 
-                alt="Bluwaves Technologies Logo" 
-                className="w-8 h-8 object-contain"
-              />
-              <span className="text-xl font-bold">Bluwaves Technologies</span>
+            <Link to="/" className="flex items-center space-x-3 mb-5">
+              <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain rounded-lg" />
+              <span className="text-lg font-bold text-foreground">Waves <span className="text-primary">Digital</span></span>
             </Link>
-            <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
-              Transforming businesses through innovative digital solutions. From AI-powered tools 
-              to custom development, we're your partner in digital success.
+            <p className="text-sm text-muted-foreground mb-6 max-w-sm leading-relaxed">
+              Transforming businesses through innovative digital solutions. Your partner in AI, mobile, web, and custom software development.
             </p>
-            <div className="space-y-2">
-              <div className="flex items-center text-gray-300">
-                <Mail className="h-4 w-4 mr-2" />
-                <a href="mailto:hello.wdservices@gmail.com" className="hover:text-white transition-colors">
-                  hello.wdservices@gmail.com
-                </a>
+            <div className="space-y-2.5 text-sm">
+              <a href="mailto:hello.wdservices@gmail.com" className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors">
+                <Mail className="h-3.5 w-3.5" /> hello.wdservices@gmail.com
+              </a>
+              <div className="flex items-center gap-2.5 text-muted-foreground">
+                <Phone className="h-3.5 w-3.5" /> 08108510085
               </div>
-              <div className="flex items-center text-gray-300">
-                <Phone className="h-4 w-4 mr-2" />
-                <span>08108510085</span>
-              </div>
-              <div className="flex items-center text-gray-300">
-                <MessageCircle className="h-4 w-4 mr-2" />
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  WhatsApp: 07051551543
-                </a>
-              </div>
-              <div className="flex items-center text-gray-300">
-                <MapPin className="h-4 w-4 mr-2" />
-                <span>Road 12, first avenue off location/ Ada George Port Harcourt, Nigeria</span>
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors">
+                <MessageCircle className="h-3.5 w-3.5" /> WhatsApp: 07051551543
+              </a>
+              <div className="flex items-center gap-2.5 text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5 shrink-0" /> Ada George, Port Harcourt, Nigeria
               </div>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">Quick Links</h3>
+            <ul className="space-y-2.5 text-sm">
+              {['services', 'products', 'about'].map((id) => (
+                <li key={id}>
+                  <button onClick={() => scrollToSection(id)} className="text-muted-foreground hover:text-foreground transition-colors capitalize">
+                    {id}
+                  </button>
+                </li>
+              ))}
               <li>
-                <button 
-                  onClick={() => scrollToSection('services')}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Services
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('products')}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Products
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('about')}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  About
-                </button>
-              </li>
-              <li>
-                <Link 
-                  to="/admin/login"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Admin Dashboard
+                <Link to="/admin/login" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Admin
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Our Products */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Our Products</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">Products</h3>
+            <ul className="space-y-2.5 text-sm">
               {products.map((product) => (
                 <li key={product.name}>
                   {product.url ? (
-                    <a href={product.url} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                      {product.name}
-                      <ExternalLink className="h-3 w-3 ml-1" />
+                    <a href={product.url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1">
+                      {product.name} <ExternalLink className="h-3 w-3" />
                     </a>
                   ) : (
-                    <span className="text-gray-300 flex items-center">
-                      {product.name}
-                    </span>
+                    <span className="text-muted-foreground">{product.name}</span>
                   )}
                 </li>
               ))}
@@ -128,22 +87,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 dark:border-gray-700 pt-8 mt-12">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 Bluwaves Technologies. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Cookie Policy
-              </a>
-            </div>
+        <div className="border-t border-border pt-8 mt-12 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-muted-foreground">© 2024 Waves Digital Services. All rights reserved.</p>
+          <div className="flex gap-6">
+            {['Privacy Policy', 'Terms of Service'].map((item) => (
+              <a key={item} href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">{item}</a>
+            ))}
           </div>
         </div>
       </div>

@@ -1,9 +1,4 @@
-
 import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Code, Smartphone, Brain, Users, Star, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -15,7 +10,7 @@ import ClientShowcase from "@/components/ClientShowcase";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-background text-foreground transition-colors">
       <Header />
       <Hero />
       <Services />
