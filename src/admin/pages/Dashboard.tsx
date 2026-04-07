@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { App } from '../../types/admin';
+import { motion } from 'framer-motion';
+import { ArrowRight, Package, Users, Zap } from 'lucide-react';
 
 interface DashboardProps {
   apps: App[];
@@ -8,83 +10,85 @@ interface DashboardProps {
 export const Dashboard = ({ apps = [] }: DashboardProps) => {
   const navigate = useNavigate();
 
-  const handleAppClick = (appId: string) => {
-    navigate(`/admin/products/${appId}`);
-  };
+  const stats = [
+    { label: 'Products Listed', value: apps.length, icon: Package, color: 'text-blue-500' },
+    { label: 'Connected', value: 0, icon: Zap, color: 'text-emerald-500' },
+    { label: 'Admin Access', value: 'Single Login', icon: Users, color: 'text-violet-500' },
+  ];
 
   return (
     <div className="space-y-8">
-      <section className="rounded-3xl bg-gradient-to-r from-blue-600 to-slate-900 p-8 text-white shadow-xl">
-        <p className="text-sm uppercase tracking-[0.25em] text-blue-100">Master Admin</p>
-        <h1 className="mt-3 text-3xl font-bold">Clean central workspace</h1>
-        <p className="mt-3 max-w-3xl text-blue-50">
-          This dashboard is now prepared to become the main control center for all Bluwaves products. Each product can plug into this workspace as its API, data source, and admin actions are connected.
-        </p>
-      </section>
+      {/* Hero Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="rounded-2xl bg-gradient-to-br from-primary/90 to-accent/80 p-8 text-white relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+        <div className="relative z-10">
+          <p className="text-xs uppercase tracking-[0.25em] text-white/70 font-medium">Master Admin</p>
+          <h1 className="mt-2 text-2xl font-bold">Welcome to Waves Admin</h1>
+          <p className="mt-2 max-w-2xl text-sm text-white/80 leading-relaxed">
+            Central control for all Waves Digital products. Manage, monitor, and connect your entire product ecosystem from one place.
+          </p>
+        </div>
+      </motion.div>
 
-      <section className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-400">Products Listed</p>
-          <p className="mt-2 text-3xl font-semibold text-gray-900 dark:text-white">{apps.length}</p>
-        </div>
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-400">Connected Products</p>
-          <p className="mt-2 text-3xl font-semibold text-gray-900 dark:text-white">0</p>
-        </div>
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-400">Admin Access</p>
-          <p className="mt-2 text-3xl font-semibold text-gray-900 dark:text-white">Single Login</p>
-        </div>
-      </section>
-
-      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Products</h2>
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-              Select a product to prepare its unified dashboard workspace.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {apps.map((app) => (
-            <button
-              key={app.id}
-              type="button"
-              onClick={() => handleAppClick(app.id)}
-              className="rounded-2xl border border-gray-200 bg-gray-50 p-5 text-left transition-all hover:border-blue-400 hover:bg-white hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-500 dark:hover:bg-gray-900"
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {stats.map((stat, i) => {
+          const Icon = stat.icon;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08 }}
+              className="glass-card rounded-2xl p-5"
             >
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{app.icon}</span>
+              <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{app.name}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Ready for integration setup</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+                  <p className="mt-1.5 text-2xl font-bold text-foreground">{stat.value}</p>
+                </div>
+                <div className={`w-10 h-10 rounded-xl bg-muted/50 flex items-center justify-center ${stat.color}`}>
+                  <Icon className="h-5 w-5" />
                 </div>
               </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">{app.description}</p>
-            </button>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Products Grid */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-foreground">Products</h2>
+          <p className="text-xs text-muted-foreground">{apps.length} total</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          {apps.map((app, i) => (
+            <motion.button
+              key={app.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.06 }}
+              type="button"
+              onClick={() => navigate(`/admin/products/${app.id}`)}
+              className="glass-card rounded-2xl p-5 text-left hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-0.5 group"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">{app.icon}</span>
+                <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">{app.name}</h3>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{app.description}</p>
+              <div className="mt-4 flex items-center text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                Open workspace <ArrowRight className="ml-1 h-3 w-3" />
+              </div>
+            </motion.button>
           ))}
         </div>
-      </section>
-
-      <section className="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-900">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Next Build Steps</h2>
-        <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="rounded-xl bg-white p-4 dark:bg-gray-800">
-            <p className="font-medium text-gray-900 dark:text-white">1. Connect product APIs</p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">Add the data endpoints or repositories for each product we want to manage here.</p>
-          </div>
-          <div className="rounded-xl bg-white p-4 dark:bg-gray-800">
-            <p className="font-medium text-gray-900 dark:text-white">2. Map admin actions</p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">Define what each product needs, such as users, orders, content, analytics, or settings.</p>
-          </div>
-          <div className="rounded-xl bg-white p-4 dark:bg-gray-800">
-            <p className="font-medium text-gray-900 dark:text-white">3. Launch unified control</p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">Use this one admin area as the permanent control center for all products.</p>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
