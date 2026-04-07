@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { App } from '../../types/admin';
+import { LayoutDashboard, Package, ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface AdminLayoutProps {
   apps?: App[];
@@ -8,103 +10,113 @@ interface AdminLayoutProps {
 }
 
 export const AdminLayout = ({ apps = [], children }: AdminLayoutProps) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { signOut } = useAuth();
   
   const currentApp = apps.find(app => location.pathname.startsWith(`/admin/products/${app.id}`));
   
   const isActive = (path: string) => {
-    if (path === '/admin') {
-      return location.pathname === path;
-    }
+    if (path === '/admin') return location.pathname === path;
     return location.pathname.startsWith(path);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      {/* Mobile header */}
-      <header className="md:hidden bg-white dark:bg-gray-800 shadow-sm">
-        <div className="flex items-center justify-between px-4 py-3">
-          <button 
-            className="text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
-            {currentApp ? `${currentApp.name} Dashboard` : 'Admin Dashboard'}
-          </h1>
-          <div className="w-6"></div> {/* Spacer for alignment */}
+    <div className="min-h-screen bg-background flex">
+      {/* Sidebar */}
+      <aside className={`fixed inset-y-0 left-0 z-40 flex flex-col bg-card border-r border-border transition-all duration-300 ${
+        collapsed ? 'w-[68px]' : 'w-60'
+      } ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+        {/* Logo */}
+        <div className={`h-16 flex items-center border-b border-border px-4 ${collapsed ? 'justify-center' : 'gap-3'}`}>
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
+            <span className="text-primary-foreground font-bold text-sm">W</span>
+          </div>
+          {!collapsed && <span className="text-sm font-bold text-foreground truncate">Waves Admin</span>}
         </div>
-      </header>
 
-      <div className="flex">
-        {/* Sidebar */}
-        <div className={`fixed inset-y-0 left-0 z-30 w-64 bg-gray-900 text-white transition-transform duration-300 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
-          <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
-            <h1 className="text-xl font-bold">Bluwaves Admin</h1>
-            <button 
-              className="md:hidden text-gray-400 hover:text-white"
-              onClick={() => setSidebarOpen(false)}
+        {/* Nav */}
+        <nav className="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
+          <Link
+            to="/admin"
+            onClick={() => setMobileOpen(false)}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+              isActive('/admin') && !location.pathname.includes('/products/')
+                ? 'bg-primary/10 text-primary'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+            } ${collapsed ? 'justify-center' : ''}`}
+          >
+            <LayoutDashboard className="h-4.5 w-4.5 shrink-0" />
+            {!collapsed && <span>Overview</span>}
+          </Link>
+
+          {!collapsed && (
+            <p className="px-3 pt-5 pb-1.5 text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">Products</p>
+          )}
+
+          {apps.map((app) => (
+            <Link
+              key={app.id}
+              to={`/admin/products/${app.id}`}
+              onClick={() => setMobileOpen(false)}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                isActive(`/admin/products/${app.id}`)
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+              } ${collapsed ? 'justify-center' : ''}`}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <span className="text-base shrink-0">{app.icon}</span>
+              {!collapsed && <span className="truncate">{app.name}</span>}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Bottom */}
+        <div className="border-t border-border p-2 space-y-1">
+          <button
+            onClick={() => signOut()}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors ${collapsed ? 'justify-center' : ''}`}
+          >
+            <LogOut className="h-4 w-4 shrink-0" />
+            {!collapsed && <span>Logout</span>}
+          </button>
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="hidden md:flex w-full items-center justify-center py-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+          </button>
+        </div>
+      </aside>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm md:hidden" onClick={() => setMobileOpen(false)} />
+      )}
+
+      {/* Main content */}
+      <div className={`flex-1 transition-all duration-300 ${collapsed ? 'md:ml-[68px]' : 'md:ml-60'}`}>
+        {/* Top bar */}
+        <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card/80 backdrop-blur-xl sticky top-0 z-20">
+          <div className="flex items-center gap-3">
+            <button className="md:hidden text-foreground" onClick={() => setMobileOpen(true)}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
+            <h1 className="text-base font-semibold text-foreground">
+              {currentApp ? currentApp.name : 'Dashboard'}
+            </h1>
           </div>
-          
-          <nav className="mt-6">
-            <div className="px-4">
-              <h2 className="text-xs uppercase text-gray-500 font-semibold tracking-wider">Main</h2>
-              <div className="mt-2 space-y-1">
-                <Link 
-                  to="/admin" 
-                  className={`flex items-center px-4 py-2 text-sm rounded-lg transition-colors ${isActive('/admin') ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                  Overview
-                </Link>
-              </div>
-            </div>
+          <Link to="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            ← Back to Site
+          </Link>
+        </header>
 
-            <div className="mt-8 px-4">
-              <h2 className="text-xs uppercase text-gray-500 font-semibold tracking-wider">Products</h2>
-              <div className="mt-2 space-y-1">
-                {apps.map((app) => (
-                  <Link
-                    key={app.id}
-                    to={`/admin/products/${app.id}`}
-                    className={`flex items-center px-4 py-2 text-sm rounded-lg transition-colors ${isActive(`/admin/products/${app.id}`) ? 'bg-blue-700 text-white' : 'text-gray-300 hover:bg-gray-800'}`}
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <span className="mr-3 text-base">{app.icon}</span>
-                    {app.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </nav>
-        </div>
-        
-        {/* Main content */}
-        <div className="flex-1 md:ml-64">
-          {/* Mobile sidebar overlay */}
-          {sidebarOpen && (
-            <div 
-              className="fixed inset-0 z-20 bg-black bg-opacity-50 md:hidden" 
-              onClick={() => setSidebarOpen(false)}
-            ></div>
-          )}
-          
-          <div className="p-6">
-            {children ?? <Outlet />}
-          </div>
-        </div>
+        <main className="p-6">
+          {children}
+        </main>
       </div>
     </div>
   );

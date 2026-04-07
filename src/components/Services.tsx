@@ -1,88 +1,87 @@
-
 import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Code, Smartphone, Brain, MessageSquare, Globe, Cog } from "lucide-react";
+import { Smartphone, Globe, Cog, Brain, MessageSquare, Code } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Services = () => {
   const services = [
     {
-      icon: <Smartphone className="h-8 w-8 text-blue-600" />,
-      title: "Mobile App Development",
-      description: "Native and cross-platform mobile applications for iOS and Android with stunning user experiences.",
-      features: ["iOS & Android", "React Native", "Flutter", "UI/UX Design"]
+      icon: Smartphone,
+      title: "Mobile Apps",
+      description: "Native & cross-platform apps for iOS and Android with beautiful UX.",
+      color: "text-blue-500",
     },
     {
-      icon: <Globe className="h-8 w-8 text-green-600" />,
+      icon: Globe,
       title: "Web Development",
-      description: "Modern, responsive websites and web applications built with the latest technologies.",
-      features: ["React/Next.js", "Responsive Design", "E-commerce", "CMS Solutions"]
+      description: "Modern, responsive websites and web applications built to perform.",
+      color: "text-emerald-500",
     },
     {
-      icon: <Cog className="h-8 w-8 text-purple-600" />,
+      icon: Cog,
       title: "Custom Software",
-      description: "Tailored software solutions designed to streamline your business processes and operations.",
-      features: ["Enterprise Solutions", "API Development", "Database Design", "Cloud Integration"]
+      description: "Tailored solutions designed to streamline your business operations.",
+      color: "text-violet-500",
     },
     {
-      icon: <Brain className="h-8 w-8 text-orange-600" />,
-      title: "AI Tools & Solutions",
-      description: "Cutting-edge artificial intelligence tools to automate and enhance your business capabilities.",
-      features: ["Machine Learning", "Data Analytics", "Automation", "Predictive Models"]
+      icon: Brain,
+      title: "AI Solutions",
+      description: "Intelligent tools and models to automate and enhance your workflow.",
+      color: "text-amber-500",
     },
     {
-      icon: <MessageSquare className="h-8 w-8 text-red-600" />,
-      title: "Chatbots & Conversational AI",
-      description: "Intelligent chatbots that provide 24/7 customer support and engagement.",
-      features: ["Natural Language Processing", "Multi-platform", "Integration Ready", "Analytics"]
+      icon: MessageSquare,
+      title: "Chatbots",
+      description: "Conversational AI that provides 24/7 customer support and engagement.",
+      color: "text-rose-500",
     },
     {
-      icon: <Code className="h-8 w-8 text-indigo-600" />,
+      icon: Code,
       title: "Digital Transformation",
-      description: "Complete digital transformation services to modernize your business infrastructure.",
-      features: ["Process Automation", "Legacy Migration", "Cloud Solutions", "Digital Strategy"]
-    }
+      description: "Complete modernization of your business infrastructure and processes.",
+      color: "text-cyan-500",
+    },
   ];
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our Services
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From concept to deployment, we provide comprehensive digital solutions 
-            that drive growth and innovation for businesses of all sizes.
+    <section id="services" className="py-24 bg-muted/30">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">What We Do</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Services</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            End-to-end digital solutions that drive growth and innovation.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-2xl transition-all duration-300 border-0 shadow-md group transform hover:-translate-y-2 hover:scale-105 bg-white overflow-hidden">
-              <CardContent className="p-8 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 transform group-hover:scale-125 transition-transform duration-300"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                className="group glass-card rounded-2xl p-7 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1"
+              >
+                <div className={`w-11 h-11 rounded-xl bg-muted/50 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 ${service.color}`}>
+                  <Icon className="h-5 w-5" />
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
