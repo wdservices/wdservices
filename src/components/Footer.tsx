@@ -8,7 +8,8 @@ const Footer = () => {
   const products = [
     { name: 'PrepVerse', url: 'https://www.prepverse.bwtng.live/' },
     { name: 'BakeBook', url: 'https://bakebook.vercel.app/' },
-    { name: 'HerbalStrength' },
+    { name: 'Drafta', url: 'https://www.drafta.bwtng.live/' },
+    { name: 'HerbalStrength', url: 'https://play.google.com/store/apps/details?id=com.bwtng.herbalstrenght' },
     { name: 'CityTour' },
   ];
 

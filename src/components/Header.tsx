@@ -63,9 +63,9 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3 group">
-            <img src="/logo.png" alt="Waves Digital Services Logo" className="w-9 h-9 object-contain rounded-lg" />
+            <img src="/logo.png" alt="Bluewaves Technology Logo" className="w-9 h-9 object-contain rounded-lg" />
             <span className="text-lg font-bold text-foreground tracking-tight">
-              Waves<span className="text-primary"> Digital</span>
+              Bluewaves <span className="text-primary">Technology</span>
             </span>
           </Link>
 

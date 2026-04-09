@@ -9,11 +9,13 @@ interface DashboardProps {
 
 export const Dashboard = ({ apps = [] }: DashboardProps) => {
   const navigate = useNavigate();
+  const mappedProducts = apps.filter((app) => app.integrationStatus).length;
+  const liveProducts = apps.filter((app) => app.liveUrl).length;
 
   const stats = [
     { label: 'Products Listed', value: apps.length, icon: Package, color: 'text-blue-500' },
-    { label: 'Connected', value: 0, icon: Zap, color: 'text-emerald-500' },
-    { label: 'Admin Access', value: 'Single Login', icon: Users, color: 'text-violet-500' },
+    { label: 'Mapped Workspaces', value: mappedProducts, icon: Zap, color: 'text-emerald-500' },
+    { label: 'Live Products', value: liveProducts, icon: Users, color: 'text-violet-500' },
   ];
 
   return (
@@ -79,9 +81,17 @@ export const Dashboard = ({ apps = [] }: DashboardProps) => {
             >
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">{app.icon}</span>
-                <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">{app.name}</h3>
+                <div>
+                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">{app.name}</h3>
+                  {app.integrationStatus && (
+                    <p className="mt-1 text-[11px] font-medium uppercase tracking-wider text-primary">{app.integrationStatus}</p>
+                  )}
+                </div>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{app.description}</p>
+              {app.repositoryPath && (
+                <p className="mt-3 text-[11px] text-muted-foreground truncate">{app.repositoryPath}</p>
+              )}
               <div className="mt-4 flex items-center text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                 Open workspace <ArrowRight className="ml-1 h-3 w-3" />
               </div>

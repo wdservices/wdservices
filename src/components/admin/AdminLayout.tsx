@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { App } from '../../types/admin';
-import { LayoutDashboard, Package, ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
+import { LayoutDashboard, ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface AdminLayoutProps {
@@ -66,7 +66,15 @@ export const AdminLayout = ({ apps = [], children }: AdminLayoutProps) => {
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               } ${collapsed ? 'justify-center' : ''}`}
             >
-              <span className="text-base shrink-0">{app.icon}</span>
+              {app.logoPath ? (
+                <img
+                  src={app.logoPath}
+                  alt={`${app.name} logo`}
+                  className="h-6 w-6 shrink-0 rounded-md object-contain"
+                />
+              ) : (
+                <span className="text-base shrink-0">{app.icon}</span>
+              )}
               {!collapsed && <span className="truncate">{app.name}</span>}
             </Link>
           ))}

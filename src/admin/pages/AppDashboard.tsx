@@ -11,12 +11,6 @@ export const AppDashboard = ({ apps }: AppDashboardProps) => {
   const { appId } = useParams<{ appId: string }>();
   const navigate = useNavigate();
   const app = apps.find(a => a.id === appId);
-  const externalLinks: Record<string, string> = {
-    arfed: 'https://ar-fed.vercel.app',
-    asemi: 'https://asemi.vercel.app',
-    bakebook: 'https://bakebook.vercel.app',
-    prepverse: 'https://www.prepverse.bwtng.live/',
-  };
 
   if (!app) {
     return (
@@ -31,18 +25,20 @@ export const AppDashboard = ({ apps }: AppDashboardProps) => {
     );
   }
 
-  const appUrl = appId ? externalLinks[appId] : undefined;
-
-  const modules = [
-    { icon: Users, title: 'Users', desc: 'Manage accounts, roles, and permissions.' },
-    { icon: FileText, title: 'Content', desc: 'Control product content and settings.' },
-    { icon: BarChart3, title: 'Analytics', desc: 'Usage, revenue, and metrics.' },
-    { icon: Workflow, title: 'Automation', desc: 'Workflows and admin actions.' },
+  const appUrl = app.liveUrl;
+  const appLiveLabel = app.liveLabel ?? 'Open Live';
+  const modules = app.workspaceModules ?? [
+    { title: 'Users', description: 'Manage accounts, roles, and permissions.' },
+    { title: 'Content', description: 'Control product content and settings.' },
+    { title: 'Analytics', description: 'Usage, revenue, and metrics.' },
+    { title: 'Automation', description: 'Workflows and admin actions.' },
   ];
+  const notes = app.architectureNotes ?? [];
+  const nextSteps = app.nextSteps ?? [];
+  const moduleIcons = [Users, FileText, BarChart3, Workflow];
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,7 +66,7 @@ export const AppDashboard = ({ apps }: AppDashboardProps) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl text-xs font-medium hover:bg-primary/90 transition-colors"
               >
-                Open Live <ExternalLink className="h-3.5 w-3.5" />
+                {appLiveLabel} <ExternalLink className="h-3.5 w-3.5" />
               </a>
             )}
           </div>
@@ -78,12 +74,11 @@ export const AppDashboard = ({ apps }: AppDashboardProps) => {
         <p className="mt-3 text-sm text-muted-foreground max-w-2xl">{app.description}</p>
       </motion.div>
 
-      {/* Status Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { label: 'Connection', value: 'Pending Setup', sub: 'API not connected yet' },
-          { label: 'Access', value: 'Central Login', sub: 'Unified authentication' },
-          { label: 'Route', value: app.path, sub: `Home for ${app.name} modules` },
+          { label: 'Integration', value: app.integrationStatus || 'Pending setup', sub: app.backendStrategy || 'Connector not mapped yet' },
+          { label: 'Auth', value: app.authStrategy || 'Central login', sub: app.dataSource || 'Data source not mapped yet' },
+          { label: 'Workspace', value: app.path, sub: app.repositoryPath || `Home for ${app.name} modules` },
         ].map((card, i) => (
           <motion.div
             key={i}
@@ -99,30 +94,82 @@ export const AppDashboard = ({ apps }: AppDashboardProps) => {
         ))}
       </div>
 
-      {/* Modules */}
-      <div>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Available Modules</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-          {modules.map((mod, i) => {
-            const Icon = mod.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.06 }}
-                className="glass-card rounded-2xl p-5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
-              >
-                <div className="w-9 h-9 rounded-xl bg-muted/50 flex items-center justify-center text-primary mb-3">
-                  <Icon className="h-4.5 w-4.5" />
-                </div>
-                <p className="text-sm font-semibold text-foreground">{mod.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{mod.desc}</p>
-              </motion.div>
-            );
-          })}
+      <div className="grid grid-cols-1 xl:grid-cols-[1.3fr_0.7fr] gap-6">
+        <div>
+          <h2 className="text-lg font-semibold text-foreground mb-4">Mapped Modules</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {modules.map((mod, i) => {
+              const Icon = moduleIcons[i % moduleIcons.length];
+              return (
+                <motion.div
+                  key={mod.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06 }}
+                  className="glass-card rounded-2xl p-5 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-muted/50 flex items-center justify-center text-primary mb-3">
+                    <Icon className="h-4.5 w-4.5" />
+                  </div>
+                  <p className="text-sm font-semibold text-foreground">{mod.title}</p>
+                  <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{mod.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="glass-card rounded-2xl p-5"
+        >
+          <h2 className="text-lg font-semibold text-foreground">Architecture Snapshot</h2>
+          <div className="mt-4 space-y-4">
+            {notes.map((note) => (
+              <div key={note.label}>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{note.label}</p>
+                <p className="mt-1 text-sm text-foreground leading-relaxed">{note.value}</p>
+              </div>
+            ))}
+            {notes.length === 0 && (
+              <p className="text-sm text-muted-foreground">Architecture details will appear here once the product connector is mapped.</p>
+            )}
+          </div>
+        </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-card rounded-2xl p-6"
+      >
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <h2 className="text-lg font-semibold text-foreground">Next Integration Steps</h2>
+            <p className="mt-1 text-sm text-muted-foreground">This is the fastest path to bring {app.name} into the master admin.</p>
+          </div>
+          {app.repositoryPath && (
+            <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+              Repo: {app.repositoryPath}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {nextSteps.map((step, i) => (
+            <div key={step} className="rounded-2xl border border-border bg-background/50 p-4">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Step {i + 1}</p>
+              <p className="mt-2 text-sm text-foreground leading-relaxed">{step}</p>
+            </div>
+          ))}
+          {nextSteps.length === 0 && (
+            <div className="rounded-2xl border border-border bg-background/50 p-4">
+              <p className="text-sm text-muted-foreground">No next steps have been mapped for this product yet.</p>
+            </div>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 };

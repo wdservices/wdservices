@@ -29,10 +29,20 @@ export interface AITool {
   rating: number;
   tags: string[];
   keywords: string[];
-  createdAt: any; // Firestore Timestamp or Date
-  updatedAt: any; // Firestore Timestamp or Date
+  createdAt: unknown;
+  updatedAt: unknown;
   createdBy?: string;
   updatedBy?: string;
+}
+
+export interface ProductWorkspaceModule {
+  title: string;
+  description: string;
+}
+
+export interface ProductWorkspaceNote {
+  label: string;
+  value: string;
 }
 
 export interface App {
@@ -40,6 +50,7 @@ export interface App {
   name: string;
   description: string;
   icon: string;
+  logoPath?: string;
   path: string;
   totalUsers: number;
   premiumUsers: number;
@@ -49,6 +60,16 @@ export interface App {
     monthlyActiveUsers: number;
     retentionRate: number;
   };
+  liveUrl?: string;
+  liveLabel?: string;
+  repositoryPath?: string;
+  integrationStatus?: string;
+  authStrategy?: string;
+  backendStrategy?: string;
+  dataSource?: string;
+  workspaceModules?: ProductWorkspaceModule[];
+  architectureNotes?: ProductWorkspaceNote[];
+  nextSteps?: string[];
 }
 
 export interface DashboardStats {
