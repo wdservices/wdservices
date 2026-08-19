@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
 import { Link } from 'react-router-dom';
 
 const bookCover = '/image/ship-it-right3.png';

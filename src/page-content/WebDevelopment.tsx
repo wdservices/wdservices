@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Globe, Check, Rocket, Smartphone, Palette, TrendingUp } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import WebDevBuildScene from '@/components/WebDevBuildScene';
 
 
 const WebDevelopment: React.FC = () => {
@@ -62,6 +64,9 @@ const WebDevelopment: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <WebDevBuildScene />
+
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
@@ -106,6 +111,19 @@ const WebDevelopment: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/web-development"
+            faqs={[
+              { question: "How much does a website cost in Nigeria?", answer: "Cost depends on scope \u2014 a simple business site, a full e-commerce store, and a custom web app are priced very differently. Contact us for a free quote based on your exact requirements." },
+              { question: "How long does it take to build a website?", answer: "A typical business website takes 2-4 weeks. E-commerce sites and custom web applications with more features usually take 4-8 weeks depending on complexity." },
+              { question: "Do you build e-commerce websites with online payment?", answer: "Yes. We build online stores with secure payment integration (including Nigerian payment gateways like Paystack and Flutterwave), inventory management, and order tracking." },
+              { question: "Will my website be mobile-friendly and fast?", answer: "Every site we build is fully responsive and optimized for speed, since both directly affect your search rankings and conversion rate." },
+              { question: "Do you offer website maintenance after launch?", answer: "Yes, we offer ongoing maintenance packages covering updates, security monitoring, backups, and content changes after your site goes live." },
+              { question: "Can you redesign my existing website?", answer: "Absolutely. We audit your current site, keep what's working, and rebuild the rest with modern design, better performance, and improved SEO." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

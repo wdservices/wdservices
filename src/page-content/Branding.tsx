@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Palette, Check, Paintbrush, Type, Image, Layout, Zap } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import BrandingBuildScene from '@/components/scenes/BrandingBuildScene';
 
 
 const Branding: React.FC = () => {
@@ -53,6 +55,9 @@ const Branding: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <BrandingBuildScene />
+
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
@@ -99,6 +104,18 @@ const Branding: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/branding"
+            faqs={[
+              { question: "What's included in a branding package?", answer: "Logo design, color palette, typography, brand voice guidelines, and a style guide document you can hand to any future designer or vendor." },
+              { question: "Do you design logos and full brand identity?", answer: "Yes, we handle both \u2014 a standalone logo, or a complete brand identity system covering everything from business cards to social media templates." },
+              { question: "How long does a branding project take?", answer: "A typical branding project takes 2-4 weeks, depending on how many rounds of revisions and how many brand assets are needed." },
+              { question: "Can you rebrand an existing business?", answer: "Yes, we regularly help businesses refresh or fully rebrand \u2014 from a modernized logo to a complete identity overhaul." },
+              { question: "Do I get brand guidelines/style guide files?", answer: "Yes, every branding project includes a brand guidelines document plus source files for logos and assets." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

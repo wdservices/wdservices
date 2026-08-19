@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Sparkles, CheckCircle2, Clock, CalendarDays, Video,

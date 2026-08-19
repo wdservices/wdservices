@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Linkedin, Twitter } from 'lucide-react';
 
@@ -41,6 +41,40 @@ const team = [
   },
 ];
 
+const initialsOf = (name: string) =>
+  name
+    .split(' ')
+    .map((p) => p[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+
+const TeamAvatar: React.FC<{ name: string; image: string }> = ({ name, image }) => {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    // Branded fallback — no broken image, no fabricated photo of a real person.
+    return (
+      <div
+        className="w-full h-full flex items-center justify-center font-display font-bold text-2xl text-white"
+        style={{ background: 'linear-gradient(135deg, hsl(217,91%,60%), hsl(222,70%,32%))' }}
+      >
+        {initialsOf(name)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={image}
+      alt={name}
+      className="w-full h-full object-cover"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+};
+
 const Team = () => (
   <section id="team" className="py-32 bg-background">
     <div className="container mx-auto px-6">
@@ -74,12 +108,7 @@ const Team = () => (
               className="glass-card rounded-2xl p-6 text-center hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-5 border-2 border-border group-hover:border-primary/40 transition-colors">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <TeamAvatar name={member.name} image={member.image} />
               </div>
               <h3 className="text-lg font-bold text-foreground font-display">{member.name}</h3>
               <p className="text-sm text-primary font-medium mb-1">{member.role}</p>

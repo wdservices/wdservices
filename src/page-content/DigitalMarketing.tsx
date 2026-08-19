@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { MessageSquare, Check, Share2, Mail, BarChart3, Megaphone, Search } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import MarketingBuildScene from '@/components/scenes/MarketingBuildScene';
 
 const DigitalMarketing: React.FC = () => {
   const features = [
@@ -59,6 +61,9 @@ const DigitalMarketing: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <MarketingBuildScene />
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
               <div key={index} className="bg-card p-8 rounded-2xl border border-border">
@@ -102,6 +107,18 @@ const DigitalMarketing: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/digital-marketing"
+            faqs={[
+              { question: "What digital marketing services do you offer?", answer: "Social media management, paid advertising, email marketing, content strategy, and SEO \u2014 either individually or as a combined growth plan." },
+              { question: "Do you manage social media accounts?", answer: "Yes, we handle content planning, posting, and community engagement across platforms like Instagram, Facebook, TikTok, and LinkedIn." },
+              { question: "Do you run paid ad campaigns (Meta, Google)?", answer: "Yes, we plan, launch, and optimize paid ad campaigns on Meta (Facebook/Instagram) and Google Ads, with ongoing performance tracking." },
+              { question: "Do you provide email marketing?", answer: "Yes, including campaign strategy, list building, automated sequences, and newsletter design." },
+              { question: "How do you measure marketing ROI?", answer: "We track cost-per-lead, conversion rate, and revenue attribution where possible, and report results monthly so you can see exactly what's working." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

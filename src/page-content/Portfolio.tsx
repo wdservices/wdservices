@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { ArrowRight, ExternalLink, BookOpen, ChefHat, MapPin } from 'lucide-react';
+import { ArrowRight, ExternalLink, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
 
 
 const Portfolio: React.FC = () => {
@@ -20,26 +20,6 @@ const Portfolio: React.FC = () => {
       color: "text-primary",
     },
     {
-      icon: ChefHat,
-      name: "BakeBook",
-      description: "The ultimate recipe management app for bakers—organize, store, and access your favorites.",
-      category: "Lifestyle",
-      status: "Live",
-      url: "https://bakebook.vercel.app/",
-      ctaLabel: "Visit Product",
-      color: "text-primary",
-    },
-    {
-      logo: "/product-logos/drafta.png",
-      name: "Drafta",
-      description: "AI-assisted writing and publishing workspace for generating, organizing, and managing article content.",
-      category: "AI Content",
-      status: "Live",
-      url: "https://www.drafta.bwtng.live/",
-      ctaLabel: "Visit Product",
-      color: "text-primary",
-    },
-    {
       logo: "/product-logos/herbalstrength.png",
       name: "HerbalStrength",
       description: "Wellness platform for discovering herbal solutions and healthy lifestyle products.",
@@ -50,9 +30,9 @@ const Portfolio: React.FC = () => {
       color: "text-primary",
     },
     {
-      icon: MapPin,
-      name: "CityTour",
-      description: "City exploration platform for discovering destinations and local travel experiences.",
+      logo: "/product-logos/citivas_blue.png",
+      name: "Citivas",
+      description: "Discover, book and enjoy the best experiences around you.",
       category: "Travel",
       status: "New",
       ctaLabel: "Visit Product",
@@ -126,9 +106,7 @@ const Portfolio: React.FC = () => {
                             <img src={product.logo} alt={`${product.name} logo`} className="h-full w-full object-contain" loading="lazy" />
                           </div>
                         ) : (
-                          <div className={`w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center ${product.color} group-hover:scale-110 transition-transform duration-300`}>
-                            <product.icon className="h-6 w-6" />
-                          </div>
+                          <div className={`w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center ${product.color} group-hover:scale-110 transition-transform duration-300`} />
                         )}
                         <div>
                           <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{product.name}</h3>

@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Smartphone, Check, Zap, Palette, Shield } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import MobileAppBuildScene from '@/components/scenes/MobileAppBuildScene';
 
 
 const MobileAppDevelopment: React.FC = () => {
@@ -62,6 +64,9 @@ const MobileAppDevelopment: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <MobileAppBuildScene />
+
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
@@ -107,6 +112,19 @@ const MobileAppDevelopment: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/mobile-app-development"
+            faqs={[
+              { question: "Do you build native or cross-platform apps?", answer: "We build both \u2014 native apps for maximum performance, and cross-platform apps (React Native/Flutter) when you need one codebase for iOS and Android to save cost and time." },
+              { question: "How much does it cost to build a mobile app in Nigeria?", answer: "Cost depends on features, platforms, and backend complexity. Contact us for a free quote after we understand what you're building." },
+              { question: "How long does app development take?", answer: "A simple MVP app typically takes 4-8 weeks. Apps with more complex features, payments, or real-time functionality can take longer." },
+              { question: "Do you publish apps to the Play Store and App Store?", answer: "Yes, we handle the full submission process for both the Google Play Store and Apple App Store, including compliance and listing optimization." },
+              { question: "Do you offer app maintenance and updates after launch?", answer: "Yes. We offer ongoing support packages for bug fixes, OS-version compatibility updates, and new feature releases." },
+              { question: "Can you build both the app and backend/API?", answer: "Yes, we build the full stack \u2014 the mobile app itself plus the backend, database, and APIs that power it." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

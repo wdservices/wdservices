@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Palette, Check, PenTool, Layout, MousePointer, Layers, Eye } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import UIUXBuildScene from '@/components/scenes/UIUXBuildScene';
 
 const UIUXDesign: React.FC = () => {
   const features = [
@@ -59,6 +61,9 @@ const UIUXDesign: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <UIUXBuildScene />
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
               <div key={index} className="bg-card p-8 rounded-2xl border border-border">
@@ -102,6 +107,18 @@ const UIUXDesign: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/ui-ux-design"
+            faqs={[
+              { question: "What's the difference between UI and UX design?", answer: "UX design is how a product works and feels to use \u2014 the flow and structure. UI design is how it looks \u2014 the visuals, layout, and interactive elements." },
+              { question: "Do you design in Figma?", answer: "Yes, Figma is our primary design tool, which makes it easy to share, review, and hand off designs directly to development." },
+              { question: "Do you conduct user research and testing?", answer: "Yes, depending on project scope we include user research, wireframing, and usability testing to validate design decisions before development." },
+              { question: "Can you redesign an existing app or website?", answer: "Yes, we regularly audit existing products and redesign the experience to improve usability, conversion, and overall polish." },
+              { question: "How long does a UI/UX project take?", answer: "A focused UI/UX project typically takes 2-5 weeks depending on the number of screens and whether user research is included." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

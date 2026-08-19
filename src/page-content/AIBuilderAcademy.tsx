@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
 import { Link } from 'react-router-dom';
 import {
   Sparkles, Rocket, Brain, Code, Users, Award, GraduationCap,

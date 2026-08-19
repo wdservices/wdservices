@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Cpu, Check, Brain, Bot, LineChart, Workflow, Sparkles } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import AIBuildScene from '@/components/scenes/AIBuildScene';
 
 const AIServices: React.FC = () => {
   const features = [
@@ -59,6 +61,9 @@ const AIServices: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <AIBuildScene />
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
               <div key={index} className="bg-card p-8 rounded-2xl border border-border">
@@ -102,6 +107,18 @@ const AIServices: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/ai-services"
+            faqs={[
+              { question: "What AI solutions do you build?", answer: "Custom chatbots, AI-powered automation, recommendation systems, and tools that integrate AI models into your existing business processes." },
+              { question: "Can you build a custom chatbot for my business?", answer: "Yes, we build chatbots trained on your business \u2014 for customer support, lead qualification, or internal use \u2014 deployable on your website or WhatsApp." },
+              { question: "Do you offer AI training or workshops?", answer: "Yes, we run AI training programs for teams and organizations wanting to understand and adopt AI tools effectively." },
+              { question: "Can AI tools integrate with our existing systems?", answer: "Yes, we design AI integrations to work with the CRM, database, or workflow tools you already use." },
+              { question: "Is my business data safe when using AI tools?", answer: "Yes, we follow secure data-handling practices and only connect AI systems to the specific data needed for each use case." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Users, Check, Lightbulb, BarChart3, Target, Shield, TrendingUp } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import ConsultingBuildScene from '@/components/scenes/ConsultingBuildScene';
 
 const BusinessConsultation: React.FC = () => {
   const features = [
@@ -59,6 +61,9 @@ const BusinessConsultation: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <ConsultingBuildScene />
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
               <div key={index} className="bg-card p-8 rounded-2xl border border-border">
@@ -102,6 +107,18 @@ const BusinessConsultation: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/business-consultation"
+            faqs={[
+              { question: "What areas of business do you consult on?", answer: "Digital strategy, technology adoption, process optimization, and go-to-market planning for businesses looking to grow using digital tools." },
+              { question: "Is this a one-time consultation or ongoing?", answer: "Both options are available \u2014 a one-time strategy session, or an ongoing advisory relationship depending on what you need." },
+              { question: "Do you help with digital transformation strategy?", answer: "Yes, this is one of our core consulting areas \u2014 helping traditional businesses modernize their operations with the right digital tools." },
+              { question: "Can you help a startup validate an idea?", answer: "Yes, we help early-stage founders validate ideas, define an MVP scope, and plan a realistic path to launch." },
+              { question: "How much does business consultation cost?", answer: "Pricing depends on scope and engagement length. Contact us for a free initial conversation about your goals." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

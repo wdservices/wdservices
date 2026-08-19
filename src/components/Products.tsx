@@ -1,14 +1,12 @@
 import React from 'react';
 import { Badge } from "@/components/ui/badge";
-import { ChefHat, MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const products = [
   { logo: "/product-logos/prepverse.png",     name: "PrepVerse",      description: "AI-powered exam preparation with practice tests, study plans, and progress analytics.",           category: "EdTech",      status: "Live",        url: "https://www.prepverse.bwtng.live/" },
-  { icon: ChefHat,                             name: "BakeBook",       description: "The ultimate recipe management app for bakers — organize, store, and access your favorites.",    category: "Lifestyle",   status: "Live",        url: "https://bakebook.vercel.app/" },
-  { logo: "/product-logos/drafta.png",         name: "Drafta",         description: "AI-assisted writing and publishing workspace for generating and managing article content.",       category: "AI Content",  status: "Live",        url: "https://www.drafta.bwtng.live/" },
   { logo: "/product-logos/herbalstrength.png", name: "HerbalStrength", description: "Wellness platform for discovering herbal solutions and healthy lifestyle products.",             category: "Health",      status: "Live",        url: "https://play.google.com/store/apps/details?id=com.bwtng.herbalstrenght" },
-  { icon: MapPin,                              name: "CityTour",       description: "City exploration platform for discovering destinations and local travel experiences.",            category: "Travel",      status: "Coming Soon", url: null },
+  { logo: "/product-logos/citivas_blue.png",  name: "Citivas",        description: "Discover, book and enjoy the best experiences around you.",                                    category: "Travel",      status: "Coming Soon", url: null },
 ];
 
 const Products = () => (
@@ -30,8 +28,6 @@ const Products = () => (
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
                 {product.logo ? (
                   <img src={product.logo} alt={product.name} className="w-10 h-10 object-contain" loading="lazy" />
-                ) : product.icon ? (
-                  <product.icon className="w-6 h-6 text-primary" />
                 ) : null}
               </div>
               <div className="flex-1 min-w-0">

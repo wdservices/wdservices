@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { allPosts } from '@/data/blog-posts';
 import { FileText, Calendar, Tag, Eye } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
 import { useBlogViews } from '@/hooks/useBlogViews';
 
 function PostViews({ slug }: { slug: string }) {

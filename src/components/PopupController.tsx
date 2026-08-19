@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import WelcomePopup from './WelcomePopup';
+import RobotPopup from './RobotPopup';
 import AcademyPopup from './AcademyPopup';
 import { useActiveCohort } from '@/hooks/useActiveCohort';
 
@@ -19,6 +19,6 @@ export default function PopupController() {
   if (showAcademy && cohort) {
     return <AcademyPopup cohort={cohort} registered={registered} onClose={() => setShowAcademy(false)} />;
   }
-  if (showDefault) return <WelcomePopup />;
+  if (showDefault) return <RobotPopup />;
   return null;
 }

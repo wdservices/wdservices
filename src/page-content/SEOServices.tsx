@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { TrendingUp, Check, Search, Target, BarChart3, Users, Zap } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import SEOBuildScene from '@/components/scenes/SEOBuildScene';
 
 
 const SEOServices: React.FC = () => {
@@ -61,6 +63,9 @@ const SEOServices: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <SEOBuildScene />
+
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
@@ -107,6 +112,19 @@ const SEOServices: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/seo-services"
+            faqs={[
+              { question: "How long does SEO take to show results?", answer: "SEO is a medium-to-long-term investment. Most businesses start seeing meaningful ranking improvements within 3-6 months, with compounding results after that." },
+              { question: "Do you offer local SEO for Nigerian businesses?", answer: "Yes, local SEO \u2014 including Google Business Profile optimization and location-based keyword targeting \u2014 is a core part of what we do for Nigerian businesses." },
+              { question: "What's included in your SEO service?", answer: "Technical SEO audits, on-page optimization, keyword research, content strategy, link building, and monthly performance reporting." },
+              { question: "Do you guarantee first-page rankings?", answer: "No ethical SEO provider can guarantee a specific ranking, since search engines control that algorithm. What we guarantee is a data-driven strategy focused on sustainable, long-term growth." },
+              { question: "Do you provide SEO content and blog writing?", answer: "Yes, we research, write, and publish SEO-optimized blog content designed to rank and drive organic traffic to your site." },
+              { question: "How do you measure SEO success?", answer: "We track keyword rankings, organic traffic, click-through rate, and conversions \u2014 not just rankings in isolation \u2014 and report on all of it monthly." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

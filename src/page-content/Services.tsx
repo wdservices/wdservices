@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { Globe, Smartphone, Cpu, Zap, Palette, TrendingUp, MessageSquare, Users, Brain, Code } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
 
 
 const ServicesPage: React.FC = () => {

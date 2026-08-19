@@ -3,7 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Zap, Check, Wrench, Database, Cloud, Lock, Cog } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Head as Helmet } from 'vite-react-ssg';
+import ServiceFAQ from '@/components/ServiceFAQ';
+import AutomationBuildScene from '@/components/scenes/AutomationBuildScene';
 
 const DigitalTools: React.FC = () => {
   const features = [
@@ -59,6 +61,9 @@ const DigitalTools: React.FC = () => {
             </Button>
           </div>
 
+          {/* Scroll-linked build scene */}
+          <AutomationBuildScene />
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
             {features.map((feature, index) => (
               <div key={index} className="bg-card p-8 rounded-2xl border border-border">
@@ -102,6 +107,19 @@ const DigitalTools: React.FC = () => {
               Contact Us Now
             </Button>
           </div>
+
+          {/* SEO FAQ */}
+          <ServiceFAQ
+            pageUrl="https://www.bwtng.live/digital-tools"
+            faqs={[
+              { question: "What kind of business processes can you automate?", answer: "Common examples include lead follow-up, invoicing, report generation, data syncing between apps, customer onboarding, and internal approval workflows." },
+              { question: "Do you build custom internal tools/dashboards?", answer: "Yes, we build custom dashboards and internal tools tailored to how your business actually operates, rather than forcing you into generic software." },
+              { question: "Can automations integrate with tools we already use?", answer: "Yes, we connect automations to the tools you already use \u2014 CRMs, spreadsheets, WhatsApp, email, payment platforms, and most modern APIs." },
+              { question: "How long does it take to build an automation workflow?", answer: "Simple automations can be live within days. More complex, multi-system workflows typically take 2-4 weeks." },
+              { question: "Do you offer ongoing support for automated systems?", answer: "Yes, we offer maintenance and monitoring plans so your workflows keep running reliably as your tools and processes change." },
+              { question: "Is my data secure in an automated workflow?", answer: "Yes, we follow secure integration practices and only connect the systems and data explicitly required for each workflow." }
+            ]}
+          />
         </div>
       </section>
       <Footer />

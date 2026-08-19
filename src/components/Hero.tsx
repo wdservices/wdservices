@@ -46,7 +46,7 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-semibold text-muted-foreground mb-10 border border-border">
               <Sparkles className="h-3 w-3 text-primary" />
               Nigeria's Leading Digital Solutions Company
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary glow-sm animate-pulse" />
             </div>
           </motion.div>
 
@@ -63,7 +63,7 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.85, delay: line.delay + wi * 0.12, ease: [0.22, 1, 0.36, 1] }}
                     className={`inline-block text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] font-display
-                      ${li === 1 ? 'text-primary' : 'text-foreground'}`}
+                      ${li === 1 ? 'text-primary neon-text' : 'text-foreground'}`}
                   >
                     {word}
                   </motion.span>
@@ -87,7 +87,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
           >
             <Button size="lg"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 h-12 text-base glow-md group font-semibold"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 h-12 text-base glow-lg neon-pulse group font-semibold"
               onClick={() => scrollToSection('services')}
             >
               Explore Services
